@@ -4,8 +4,6 @@ import Link from 'next/link';
 
 import React from 'react';
 
-import { motion } from 'framer-motion';
-
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import { useAccount } from 'wagmi';
