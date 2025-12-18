@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "X402-Tooling",
-  description: "X402-Tooling - Agent Marketplace",
+  title: "MNT-Voice",
+  description: "MNT-Voice - On-Chain Invoice Financing Platform for SMEs",
 };
 
 export default function RootLayout({

@@ -26,9 +26,7 @@ export default function Footer() {
 
           <div className="text-black font-black text-lg flex items-center gap-2">
 
-            <img src="/logo.png" alt="X402-Tooling Logo" className="h-6 w-6" />
-
-            X402-Tooling
+            MNT-Voice
 
           </div>
 
