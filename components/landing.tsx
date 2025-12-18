@@ -12,33 +12,33 @@ const faqs = [
 
   {
 
-    q: 'What is MNT-Voice?',
+    q: 'What is x402-limit?',
 
-    a: 'MNT-Voice is an on-chain invoice financing platform focused on SMEs. We tokenize verified invoices as NFTs on Mantle, allowing investors to fund invoices and earn yield when invoices settle. SMEs get immediate liquidity instead of waiting 30-90 days for payments.'
-
-  },
-
-  {
-
-    q: 'How does invoice financing work?',
-
-    a: 'SMEs upload invoice details, which are verified and minted as NFTs on Mantle. Investors can fund these invoices, and when the invoice is paid, repayment plus yield is automatically distributed to investors. This provides immediate liquidity to SMEs while offering yield opportunities to investors.'
+    a: 'x402-limit is a developer guardrail system for x402 that allows you to define spend limits, rate limits, and usage quotas on x402 calls. It prevents abuse and overuse by enforcing configurable constraints on API usage, helping developers control costs and protect their applications.'
 
   },
 
   {
 
-    q: 'How is invoice verification handled?',
+    q: 'How do spend limits work?',
 
-    a: 'In our MVP, we use mock verification to demonstrate the concept. Invoices are verified for basic details before being tokenized as NFTs. Future versions will include more sophisticated verification mechanisms.'
+    a: 'Spend limits allow you to set maximum spending thresholds for x402 calls over a specific time period. Once the limit is reached, further calls are blocked until the limit resets. This helps prevent unexpected costs and budget overruns.'
 
   },
 
   {
 
-    q: 'What happens when an invoice is paid?',
+    q: 'What are rate limits?',
 
-    a: 'When an invoice settles, the repayment amount plus the agreed yield is automatically distributed to investors who funded the invoice. This happens on-chain through smart contracts on Mantle testnet, ensuring transparency and trustless execution.'
+    a: 'Rate limits control the frequency of x402 calls, preventing too many requests in a short time period. You can configure limits like "100 calls per minute" or "1000 calls per hour" to prevent abuse and ensure fair usage across your application.'
+
+  },
+
+  {
+
+    q: 'How are usage quotas enforced?',
+
+    a: 'Usage quotas track total consumption over a billing period (daily, weekly, monthly). When a quota is exceeded, x402 calls are automatically blocked. Quotas can be set per API endpoint, user, or application-wide, giving you granular control over usage.'
 
   },
 
@@ -62,7 +62,7 @@ export default function Landing() {
 
           <div className="bg-[#0048E0] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
 
-            <h1 className="text-2xl font-black text-white">MNT-Voice</h1>
+            <h1 className="text-2xl font-black text-white">x402-limit</h1>
 
           </div>
 
@@ -98,13 +98,13 @@ export default function Landing() {
 
             <div className="mb-4">
 
-              <p className="text-sm font-black text-white bg-black px-3 py-2 rounded-lg inline-block">On-Chain Invoice Financing for SMEs</p>
+              <p className="text-sm font-black text-white bg-black px-3 py-2 rounded-lg inline-block">Developer Guardrails for x402</p>
 
             </div>
 
             <div className="mb-4">
 
-              <h2 className="text-5xl font-black text-[#0048E0] bg-white px-3 py-2 rounded-lg inline-block italic">MNT-Voice</h2>
+              <h2 className="text-5xl font-black text-[#0048E0] bg-white px-3 py-2 rounded-lg inline-block italic">x402-limit</h2>
 
             </div>
 
@@ -112,7 +112,7 @@ export default function Landing() {
 
               <p className="text-2xl font-black text-black max-w-2xl mx-auto">
 
-                Tokenize verified invoices on Mantle. Get immediate liquidity while investors earn yield when invoices settle.
+                Define spend limits, rate limits, and usage quotas on x402 calls. Prevent abuse and overuse with powerful guardrails.
 
               </p>
 
@@ -128,7 +128,7 @@ export default function Landing() {
 
       <Link href="/invoices">
 
-          <button className="bg-[#0048E0] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-8 py-4 rounded-lg text-lg font-bold text-white hover:bg-[#0048E0]/90 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px]">Browse Invoices</button>
+          <button className="bg-[#0048E0] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-8 py-4 rounded-lg text-lg font-bold text-white hover:bg-[#0048E0]/90 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px]">View Dashboard</button>
 
         </Link>
 
@@ -136,7 +136,7 @@ export default function Landing() {
 
           <Link href="/upload">
 
-            <button className="bg-[#7183F5] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-8 py-4 rounded-lg text-lg font-bold text-white hover:bg-[#7183F5]/90 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px]">Upload Invoice</button>
+            <button className="bg-[#7183F5] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-8 py-4 rounded-lg text-lg font-bold text-white hover:bg-[#7183F5]/90 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px]">Configure Limits</button>
 
           </Link>
 
@@ -148,35 +148,35 @@ export default function Landing() {
 
         <div className="grid grid-cols-12 gap-6 auto-rows-[180px]">
 
-          {/* Why MNT-Voice */}
+          {/* Why x402-limit */}
 
           <div className="col-span-12 md:col-span-6 row-span-2 bg-white border-2 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h2 className="text-xl font-black mb-4 text-white bg-[#0048E0] px-3 py-2 rounded-lg inline-block">Why MNT-Voice</h2>
+            <h2 className="text-xl font-black mb-4 text-white bg-[#0048E0] px-3 py-2 rounded-lg inline-block">Why x402-limit</h2>
 
-            <p className="text-sm text-black leading-relaxed">SMEs wait 30-90 days for invoice payments and lack access to liquidity. MNT-Voice solves this by tokenizing verified invoices as NFTs on Mantle, allowing investors to fund invoices and earn yield when invoices settle. Clear RealFi use case with strong real-world relevance and simple yield logic.</p>
+            <p className="text-sm text-black leading-relaxed">Prevent unexpected costs and abuse with powerful guardrails for x402. Define spend limits to control budgets, set rate limits to prevent API abuse, and configure usage quotas to manage consumption. Protect your application from overuse while maintaining full control over x402 call behavior.</p>
 
           </div>
 
-          {/* Powered by Mantle */}
+          {/* Key Features */}
 
           <div className="col-span-12 md:col-span-6 row-span-2 bg-[#0048E0] border-2 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h2 className="text-xl font-black mb-4 text-white bg-black px-3 py-2 rounded-lg inline-block">Powered by Mantle</h2>
+            <h2 className="text-xl font-black mb-4 text-white bg-black px-3 py-2 rounded-lg inline-block">Key Features</h2>
 
-            <p className="text-sm text-white mb-4 leading-relaxed">Built on cutting-edge blockchain technology:</p>
+            <p className="text-sm text-white mb-4 leading-relaxed">Powerful guardrail capabilities:</p>
 
             <ul className="space-y-2 text-sm">
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Invoice NFTs minted on Mantle</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Spend limits - Control budget and costs</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Smart contract automation</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Rate limits - Prevent API abuse</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Automatic yield distribution</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Usage quotas - Manage consumption</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Testnet repayment cycle</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Real-time monitoring & alerts</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Mock verification system</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">SDK & API integration</span></li>
 
             </ul>
 
@@ -188,39 +188,39 @@ export default function Landing() {
 
             <h2 className="text-xl font-black mb-4 text-white bg-[#0048E0] px-3 py-2 rounded-lg inline-block">How It Works</h2>
 
-            <p className="text-sm text-black mb-4 leading-relaxed">Invoice financing in four simple steps:</p>
+            <p className="text-sm text-black mb-4 leading-relaxed">Set up guardrails in four simple steps:</p>
 
             <div className="space-y-3">
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">1</span><div><div className="font-bold text-black mb-1 text-sm">SME Uploads Invoice</div><div className="text-xs text-black">SME uploads invoice details which are verified (mock verification in MVP) before being tokenized.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">1</span><div><div className="font-bold text-black mb-1 text-sm">Configure Limits</div><div className="text-xs text-black">Define spend limits, rate limits, and usage quotas through our intuitive interface or SDK.</div></div></div>
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">2</span><div><div className="font-bold text-black mb-1 text-sm">Invoice NFT Minted</div><div className="text-xs text-black">Verified invoice is minted as an NFT on Mantle blockchain, making it tradeable and fundable.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">2</span><div><div className="font-bold text-black mb-1 text-sm">Integrate SDK</div><div className="text-xs text-black">Add x402-limit SDK to your application to enforce guardrails on all x402 calls automatically.</div></div></div>
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">3</span><div><div className="font-bold text-black mb-1 text-sm">Investors Fund Invoice</div><div className="text-xs text-black">Investors browse available invoices and fund them to provide immediate liquidity to SMEs.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">3</span><div><div className="font-bold text-black mb-1 text-sm">Monitor Usage</div><div className="text-xs text-black">Track real-time usage, spending, and rate limit status through the dashboard with detailed analytics.</div></div></div>
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">4</span><div><div className="font-bold text-black mb-1 text-sm">Automatic Repayment & Yield</div><div className="text-xs text-black">When invoice settles, repayment plus yield is automatically distributed to investors through smart contracts.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">4</span><div><div className="font-bold text-black mb-1 text-sm">Automatic Enforcement</div><div className="text-xs text-black">When limits are reached, x402 calls are automatically blocked or throttled to prevent abuse and overuse.</div></div></div>
 
             </div>
 
           </div>
 
-          {/* RealFi for SMEs */}
+          {/* Developer Guardrails */}
 
           <div className="col-span-12 md:col-span-4 row-span-1 bg-white border-2 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h3 className="text-lg font-black mb-2 text-white bg-[#0048E0] px-3 py-1 rounded-lg inline-block">RealFi for SMEs</h3>
+            <h3 className="text-lg font-black mb-2 text-white bg-[#0048E0] px-3 py-1 rounded-lg inline-block">Developer Guardrails</h3>
 
-            <p className="text-black text-sm mt-2">MNT-Voice bridges traditional finance with DeFi, providing SMEs with immediate liquidity while offering investors transparent yield opportunities backed by real-world invoices.</p>
+            <p className="text-black text-sm mt-2">x402-limit provides essential guardrails for developers using x402, preventing unexpected costs, API abuse, and overuse through configurable limits and real-time enforcement.</p>
 
           </div>
 
-          {/* MVP Features */}
+          {/* SDK & API */}
 
           <div className="col-span-12 md:col-span-4 row-span-1 bg-white border-2 border-black border-dashed shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h4 className="text-lg font-bold text-white bg-yellow-500 px-3 py-1 rounded-lg inline-block">MVP Features</h4>
+            <h4 className="text-lg font-bold text-white bg-yellow-500 px-3 py-1 rounded-lg inline-block">SDK & API</h4>
 
-            <p className="text-black text-sm mt-2 font-bold">Single invoice flow, mock verification, and testnet repayment cycle. Building the foundation for scalable invoice financing on Mantle.</p>
+            <p className="text-black text-sm mt-2 font-bold">Easy-to-use SDKs and REST APIs for defining limits, monitoring usage, and integrating guardrails into your x402-powered applications.</p>
 
           </div>
 

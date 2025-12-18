@@ -21,7 +21,7 @@ import {
 import { ReactNode } from 'react';
 
 const config = getDefaultConfig({
-  appName: 'MNT-Voice',
+  appName: 'x402-limit',
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'YOUR_PROJECT_ID',
   chains: [mantleTestnet],
   ssr: true, // If your dApp uses server side rendering (SSR)

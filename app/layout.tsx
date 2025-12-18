@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MNT-Voice",
-  description: "MNT-Voice - On-Chain Invoice Financing Platform for SMEs",
+  title: "x402-limit",
+  description: "x402-limit - Developer Guardrails for x402: Spend Limits, Rate Limits & Usage Quotas",
 };
 
 export default function RootLayout({

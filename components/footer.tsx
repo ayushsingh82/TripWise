@@ -26,7 +26,7 @@ export default function Footer() {
 
           <div className="text-black font-black text-lg flex items-center gap-2">
 
-            MNT-Voice
+            x402-limit
 
           </div>
 
