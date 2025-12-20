@@ -189,7 +189,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
   float r = max(uSpotlightRadius, 1e-4);
   float dn = d / r;
   float spot = (1.0 - 2.0 * pow(dn, uSpotlightSoftness)) * uSpotlightOpacity;
-  vec3 cir = vec3(spot);
+  vec3 cir = vec3(spot * 0.3, spot * 0.8, spot * 0.4);
   float stripe = fract(uvMod.x * max(uBlindCount, 1.0));
   if (uShineFlip > 0.5) stripe = 1.0 - stripe;
     vec3 ran = vec3(stripe);
