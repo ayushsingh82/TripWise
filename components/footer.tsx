@@ -10,21 +10,21 @@ export default function Footer() {
 
     <>
 
-      {/* Black line above footer */}
+      {/* White line above footer */}
 
-      <div className="border-t-2 border-black"></div>
+      <div className="border-t-2 border-white/20"></div>
 
       
 
       {/* Footer */}
 
-      <footer className="bg-white py-6 px-4">
+      <footer className="bg-black py-6 px-4">
 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
           {/* Name */}
 
-          <div className="text-black font-black text-lg flex items-center gap-2">
+          <div className="text-white font-black text-lg flex items-center gap-2">
 
             x402-limit
 
@@ -44,7 +44,7 @@ export default function Footer() {
 
               rel="noopener noreferrer" 
 
-              className="text-black hover:opacity-70 transition-opacity"
+              className="text-white hover:opacity-70 transition-opacity"
 
               aria-label="GitHub"
 
@@ -66,7 +66,7 @@ export default function Footer() {
 
               rel="noopener noreferrer" 
 
-              className="text-black hover:opacity-70 transition-opacity"
+              className="text-white hover:opacity-70 transition-opacity"
 
               aria-label="Twitter"
 

@@ -52,17 +52,17 @@ export default function Landing() {
 
   return (
 
-    <div className="min-h-screen bg-white font-sans tracking-tight relative overflow-x-hidden">
+    <div className="min-h-screen bg-black font-sans tracking-tight relative overflow-x-hidden">
 
       {/* HEADER */}
 
-      <div className="absolute top-6 left-6 z-10">
+          <div className="absolute top-6 left-6 z-10">
 
         <Link href="/" className="focus:outline-none">
 
-          <div className="bg-[#0048E0] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
+          <div className="bg-[#70E78A] border-2 border-[#04130C] shadow-[3px_3px_0_0_rgba(255,255,255,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
 
-            <h1 className="text-2xl font-black text-white">x402-limit</h1>
+            <h1 className="text-2xl font-black text-black">x402-limit</h1>
 
           </div>
 
@@ -74,11 +74,7 @@ export default function Landing() {
 
       <div className="absolute top-6 right-6 z-10">
 
-        <div className={`connect-button-wrapper border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 ${
-
-          isConnected ? 'bg-white' : 'bg-[#0048E0]'
-
-        }`}>
+        <div className="connect-button-wrapper border-2 border-white shadow-[6px_6px_0_0_rgba(255,255,255,1)] rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 bg-[#70E78A]">
 
           <ConnectButton showBalance={false} />
 
@@ -98,19 +94,19 @@ export default function Landing() {
 
             <div className="mb-4">
 
-              <p className="text-sm font-black text-white bg-black px-3 py-2 rounded-lg inline-block">Developer Guardrails for x402</p>
+              <p className="text-sm font-black text-white bg-[#04130C] border border-[#0D5036] px-3 py-2 rounded-lg inline-block">Developer Guardrails for x402</p>
 
             </div>
 
             <div className="mb-4">
 
-              <h2 className="text-5xl font-black text-[#0048E0] bg-white px-3 py-2 rounded-lg inline-block italic">x402-limit</h2>
+              <h2 className="text-5xl font-black text-[#01FF84] bg-black px-3 py-2 rounded-lg inline-block italic">x402-limit</h2>
 
             </div>
 
             <div>
 
-              <p className="text-2xl font-black text-black max-w-2xl mx-auto">
+              <p className="text-2xl font-black text-white max-w-2xl mx-auto">
 
                 Define spend limits, rate limits, and usage quotas on x402 calls. Prevent abuse and overuse with powerful guardrails.
 
@@ -126,9 +122,9 @@ export default function Landing() {
 
       <div className="text-center mb-6 flex flex-col md:flex-row items-center justify-center gap-6">
 
-      <Link href="/invoices">
+      <Link href="/dashboard">
 
-          <button className="bg-[#0048E0] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-8 py-4 rounded-lg text-lg font-bold text-white hover:bg-[#0048E0]/90 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px]">View Dashboard</button>
+          <button className="bg-[#70E78A] border-2 border-[#04130C] shadow-[3px_3px_0_0_rgba(255,255,255,1)] px-8 py-4 rounded-lg text-lg font-bold text-black">View Dashboard</button>
 
         </Link>
 
@@ -136,7 +132,7 @@ export default function Landing() {
 
           <Link href="/upload">
 
-            <button className="bg-[#7183F5] border-2 border-black shadow-[6px_6px_0_0_rgba(0,0,0,1)] px-8 py-4 rounded-lg text-lg font-bold text-white hover:bg-[#7183F5]/90 hover:shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 active:shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px]">Configure Limits</button>
+            <button className="bg-[#70E78A] border-2 border-[#04130C] shadow-[3px_3px_0_0_rgba(255,255,255,1)] px-8 py-4 rounded-lg text-lg font-bold text-black">Configure Limits</button>
 
           </Link>
 
@@ -150,33 +146,33 @@ export default function Landing() {
 
           {/* Why x402-limit */}
 
-          <div className="col-span-12 md:col-span-6 row-span-2 bg-white border-2 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
+          <div className="col-span-12 md:col-span-6 row-span-2 bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h2 className="text-xl font-black mb-4 text-white bg-[#0048E0] px-3 py-2 rounded-lg inline-block">Why x402-limit</h2>
+            <h2 className="text-xl font-black mb-4 text-white bg-[#04130C] border border-[#0D5036] px-3 py-2 rounded-lg inline-block">Why x402-limit</h2>
 
-            <p className="text-sm text-black leading-relaxed">Prevent unexpected costs and abuse with powerful guardrails for x402. Define spend limits to control budgets, set rate limits to prevent API abuse, and configure usage quotas to manage consumption. Protect your application from overuse while maintaining full control over x402 call behavior.</p>
+            <p className="text-sm text-white leading-relaxed">Prevent unexpected costs and abuse with powerful guardrails for x402. Define spend limits to control budgets, set rate limits to prevent API abuse, and configure usage quotas to manage consumption. Protect your application from overuse while maintaining full control over x402 call behavior.</p>
 
           </div>
 
           {/* Key Features */}
 
-          <div className="col-span-12 md:col-span-6 row-span-2 bg-[#0048E0] border-2 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
+          <div className="col-span-12 md:col-span-6 row-span-2 bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h2 className="text-xl font-black mb-4 text-white bg-black px-3 py-2 rounded-lg inline-block">Key Features</h2>
+            <h2 className="text-xl font-black mb-4 text-white bg-[#04130C] border border-[#0D5036] px-3 py-2 rounded-lg inline-block">Key Features</h2>
 
             <p className="text-sm text-white mb-4 leading-relaxed">Powerful guardrail capabilities:</p>
 
             <ul className="space-y-2 text-sm">
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Spend limits - Control budget and costs</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-[#01FF84]"></span><span className="text-white font-semibold">Spend limits - Control budget and costs</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Rate limits - Prevent API abuse</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-[#01FF84]"></span><span className="text-white font-semibold">Rate limits - Prevent API abuse</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Usage quotas - Manage consumption</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-[#01FF84]"></span><span className="text-white font-semibold">Usage quotas - Manage consumption</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">Real-time monitoring & alerts</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-[#01FF84]"></span><span className="text-white font-semibold">Real-time monitoring & alerts</span></li>
 
-              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-white"></span><span className="text-white font-semibold">SDK & API integration</span></li>
+              <li className="flex items-center"><span className="w-2 h-2 rounded-full mr-3 bg-[#01FF84]"></span><span className="text-white font-semibold">SDK & API integration</span></li>
 
             </ul>
 
@@ -184,21 +180,21 @@ export default function Landing() {
 
           {/* How It Works */}
 
-          <div className="col-span-12 md:col-span-8 row-span-2 bg-white border-2 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
+          <div className="col-span-12 md:col-span-8 row-span-2 bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h2 className="text-xl font-black mb-4 text-white bg-[#0048E0] px-3 py-2 rounded-lg inline-block">How It Works</h2>
+            <h2 className="text-xl font-black mb-4 text-white bg-[#04130C] border border-[#0D5036] px-3 py-2 rounded-lg inline-block">How It Works</h2>
 
-            <p className="text-sm text-black mb-4 leading-relaxed">Set up guardrails in four simple steps:</p>
+            <p className="text-sm text-white mb-4 leading-relaxed">Set up guardrails in four simple steps:</p>
 
             <div className="space-y-3">
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">1</span><div><div className="font-bold text-black mb-1 text-sm">Configure Limits</div><div className="text-xs text-black">Define spend limits, rate limits, and usage quotas through our intuitive interface or SDK.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#01FF84] mr-3">1</span><div><div className="font-bold text-white mb-1 text-sm">Configure Limits</div><div className="text-xs text-white">Define spend limits, rate limits, and usage quotas through our intuitive interface or SDK.</div></div></div>
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">2</span><div><div className="font-bold text-black mb-1 text-sm">Integrate SDK</div><div className="text-xs text-black">Add x402-limit SDK to your application to enforce guardrails on all x402 calls automatically.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#01FF84] mr-3">2</span><div><div className="font-bold text-white mb-1 text-sm">Integrate SDK</div><div className="text-xs text-white">Add x402-limit SDK to your application to enforce guardrails on all x402 calls automatically.</div></div></div>
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">3</span><div><div className="font-bold text-black mb-1 text-sm">Monitor Usage</div><div className="text-xs text-black">Track real-time usage, spending, and rate limit status through the dashboard with detailed analytics.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#01FF84] mr-3">3</span><div><div className="font-bold text-white mb-1 text-sm">Monitor Usage</div><div className="text-xs text-white">Track real-time usage, spending, and rate limit status through the dashboard with detailed analytics.</div></div></div>
 
-              <div className="flex items-start"><span className="text-lg font-extrabold text-[#0048E0] mr-3">4</span><div><div className="font-bold text-black mb-1 text-sm">Automatic Enforcement</div><div className="text-xs text-black">When limits are reached, x402 calls are automatically blocked or throttled to prevent abuse and overuse.</div></div></div>
+              <div className="flex items-start"><span className="text-lg font-extrabold text-[#01FF84] mr-3">4</span><div><div className="font-bold text-white mb-1 text-sm">Automatic Enforcement</div><div className="text-xs text-white">When limits are reached, x402 calls are automatically blocked or throttled to prevent abuse and overuse.</div></div></div>
 
             </div>
 
@@ -206,21 +202,21 @@ export default function Landing() {
 
           {/* Developer Guardrails */}
 
-          <div className="col-span-12 md:col-span-4 row-span-1 bg-white border-2 border-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
+          <div className="col-span-12 md:col-span-4 row-span-1 bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h3 className="text-lg font-black mb-2 text-white bg-[#0048E0] px-3 py-1 rounded-lg inline-block">Developer Guardrails</h3>
+            <h3 className="text-lg font-black mb-2 text-white bg-[#04130C] border border-[#0D5036] px-3 py-1 rounded-lg inline-block">Developer Guardrails</h3>
 
-            <p className="text-black text-sm mt-2">x402-limit provides essential guardrails for developers using x402, preventing unexpected costs, API abuse, and overuse through configurable limits and real-time enforcement.</p>
+            <p className="text-white text-sm mt-2">x402-limit provides essential guardrails for developers using x402, preventing unexpected costs, API abuse, and overuse through configurable limits and real-time enforcement.</p>
 
           </div>
 
           {/* SDK & API */}
 
-          <div className="col-span-12 md:col-span-4 row-span-1 bg-white border-2 border-black border-dashed shadow-[8px_8px_0_0_rgba(0,0,0,1)] p-8 rounded-2xl flex flex-col justify-center">
+          <div className="col-span-12 md:col-span-4 row-span-1 bg-black border-2 border-white border-dashed shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-8 rounded-2xl flex flex-col justify-center">
 
-            <h4 className="text-lg font-bold text-white bg-yellow-500 px-3 py-1 rounded-lg inline-block">SDK & API</h4>
+            <h4 className="text-lg font-bold text-white bg-[#04130C] border border-[#0D5036] px-3 py-1 rounded-lg inline-block">SDK & API</h4>
 
-            <p className="text-black text-sm mt-2 font-bold">Easy-to-use SDKs and REST APIs for defining limits, monitoring usage, and integrating guardrails into your x402-powered applications.</p>
+            <p className="text-white text-sm mt-2 font-bold">Easy-to-use SDKs and REST APIs for defining limits, monitoring usage, and integrating guardrails into your x402-powered applications.</p>
 
           </div>
 
@@ -228,23 +224,23 @@ export default function Landing() {
 
         {/* FAQ SECTION - moved up */}
 
-        <section className="relative z-10 px-4 py-16 border-t border-[#0048E0]/20 mt-12">
+        <section className="relative z-10 px-4 py-16 border-t border-white/20 mt-12">
 
           <div className="max-w-3xl mx-auto">
 
-            <h2 className="text-3xl text-black font-black mb-8 text-center">Frequently Asked Questions</h2>
+            <h2 className="text-3xl text-white font-black mb-8 text-center">Frequently Asked Questions</h2>
 
             <div className="space-y-4">
 
               {faqs.map((faq, index) => (
 
-                <div key={index} className="border-2 border-[#0048E0] rounded-2xl overflow-hidden bg-white">
+                <div key={index} className="border-2 border-[#0D5036] rounded-2xl overflow-hidden bg-[#04130C]">
 
                   <button
 
                     onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
 
-                    className="w-full p-6 text-left flex items-center justify-between text-black hover:bg-[#0048E0] hover:text-white transition-all duration-300 focus:outline-none"
+                    className="w-full p-6 text-left flex items-center justify-between text-white hover:bg-[#0D5036] transition-all duration-300 focus:outline-none"
 
                   >
 
@@ -256,7 +252,7 @@ export default function Landing() {
 
                   {expandedFaq === index && (
 
-                    <div className="px-6 pb-6 text-black/80 animate-fade-in bg-white">{faq.a}</div>
+                    <div className="px-6 pb-6 text-white animate-fade-in bg-[#04130C]">{faq.a}</div>
 
                   )}
 

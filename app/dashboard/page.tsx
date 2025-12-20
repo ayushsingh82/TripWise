@@ -126,7 +126,7 @@ export default function DashboardPage() {
       {/* HEADER */}
       <div className="absolute top-6 left-6 z-10">
         <Link href="/" className="focus:outline-none">
-          <div className="bg-[#70E78A] border-2 border-white shadow-[6px_6px_0_0_rgba(255,255,255,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
+          <div className="bg-[#70E78A] border-2 border-[#04130C] shadow-[3px_3px_0_0_rgba(255,255,255,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
             <h1 className="text-2xl font-black text-black">x402-limit</h1>
           </div>
         </Link>
@@ -150,19 +150,19 @@ export default function DashboardPage() {
 
           {/* STATS SUMMARY */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-black border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
               <p className="text-sm font-bold text-white/60 mb-1">Total Limits</p>
               <p className="text-3xl font-black text-[#01FF84]">{limits.length}</p>
             </div>
-            <div className="bg-black border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
               <p className="text-sm font-bold text-white/60 mb-1">Active</p>
               <p className="text-3xl font-black text-green-500">{limits.filter(l => l.status === 'active').length}</p>
             </div>
-            <div className="bg-black border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
               <p className="text-sm font-bold text-white/60 mb-1">Warning</p>
               <p className="text-3xl font-black text-yellow-500">{limits.filter(l => l.status === 'warning').length}</p>
             </div>
-            <div className="bg-black border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
               <p className="text-sm font-bold text-white/60 mb-1">Exceeded</p>
               <p className="text-3xl font-black text-red-500">{limits.filter(l => l.status === 'exceeded').length}</p>
             </div>
@@ -172,7 +172,7 @@ export default function DashboardPage() {
           <div className="flex flex-wrap gap-4 mb-8 justify-center">
             <button
               onClick={() => setFilter('all')}
-              className={`border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`border-2 border-[##909090] shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
                 filter === 'all'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
@@ -182,7 +182,7 @@ export default function DashboardPage() {
             </button>
             <button
               onClick={() => setFilter('active')}
-              className={`border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
                 filter === 'active'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
@@ -192,7 +192,7 @@ export default function DashboardPage() {
             </button>
             <button
               onClick={() => setFilter('warning')}
-              className={`border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
                 filter === 'warning'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
@@ -202,7 +202,7 @@ export default function DashboardPage() {
             </button>
             <button
               onClick={() => setFilter('exceeded')}
-              className={`border-2 border-white shadow-[4px_4px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
                 filter === 'exceeded'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
