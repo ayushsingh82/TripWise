@@ -4,9 +4,6 @@ import Link from 'next/link';
 
 import React from 'react';
 
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-
-import { useAccount } from 'wagmi';
 
 const faqs = [
 
@@ -48,39 +45,10 @@ export default function Landing() {
 
   const [expandedFaq, setExpandedFaq] = React.useState<number | null>(null);
 
-  const { isConnected } = useAccount();
-
   return (
 
     <div className="min-h-screen bg-black font-sans tracking-tight relative overflow-x-hidden">
 
-      {/* HEADER */}
-
-          <div className="absolute top-6 left-6 z-10">
-
-        <Link href="/" className="focus:outline-none">
-
-          <div className="bg-[#70E78A] border-2 border-[#04130C] shadow-[3px_3px_0_0_rgba(255,255,255,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
-
-            <h1 className="text-2xl font-black text-black">x402-limit</h1>
-
-          </div>
-
-        </Link>
-
-      </div>
-
-      {/* WALLET CONNECT BUTTON */}
-
-      <div className="absolute top-6 right-6 z-10">
-
-        <div className="connect-button-wrapper border-2 border-white shadow-[6px_6px_0_0_rgba(255,255,255,1)] rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 bg-[#70E78A]">
-
-          <ConnectButton showBalance={false} />
-
-        </div>
-
-      </div>
 
      
 
@@ -222,6 +190,40 @@ export default function Landing() {
 
         </div>
 
+        {/* WHAT YOU CAN BUILD SECTION */}
+        <section className="relative z-10 px-4 py-16 border-t border-white/20 mt-12">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-black mb-8 text-center">
+              <span className="text-white">What You Can </span>
+              <span className="text-[#01FF84]">Build</span>
+            </h2>
+
+            <div className="flex flex-wrap gap-3 justify-center mb-8">
+              <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Offline NFT Marketplaces</span>
+              <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">P2P Token Swaps</span>
+              <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Local Content Sharing</span>
+              <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">In-Game Item Trading</span>
+              <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Decentralized File Sharing</span>
+            </div>
+
+            <div className="flex items-center justify-center gap-4">
+              <button className="bg-[#70E78A] border border-transparent rounded-full px-6 py-2 text-sm font-bold text-black">Get early access</button>
+              
+              <a 
+                href="https://github.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-white hover:opacity-70 transition-opacity"
+                aria-label="GitHub"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ SECTION - moved up */}
 
         <section className="relative z-10 px-4 py-16 border-t border-white/20 mt-12">
@@ -264,6 +266,35 @@ export default function Landing() {
 
           </div>
 
+        </section>
+
+        {/* BE THE FIRST TO ZYPP SECTION */}
+        <section className="relative z-10 px-4 py-16 border-t border-white/20 mt-12">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-black mb-4">
+              <span className="text-white">Be the First to </span>
+              <span className="text-[#01FF84]">x402-limit</span>
+            </h2>
+            
+            <p className="text-white/80 mb-8 text-lg">
+              Be the first to experience the future of offline crypto transactions. Join our waitlist to get early access, exclusive updates, and special offers.
+            </p>
+
+            <form className="relative max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full border border-white/20 rounded-lg px-4 py-3 pr-32 text-white bg-black focus:outline-none placeholder:text-white/40"
+                required
+              />
+              <button
+                type="submit"
+                className="absolute top-2 right-2 bg-[#70E78A] border border-transparent rounded-full px-4 py-1.5 text-sm font-bold text-black"
+              >
+                Join the waitlist
+              </button>
+            </form>
+          </div>
         </section>
 
     

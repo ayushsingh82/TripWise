@@ -2,8 +2,6 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
 import Footer from '@/components/footer';
 
 interface Limit {
@@ -20,7 +18,6 @@ interface Limit {
 }
 
 export default function DashboardPage() {
-  const { isConnected } = useAccount();
   const [filter, setFilter] = React.useState<'all' | 'active' | 'warning' | 'exceeded'>('all');
 
   // Mock limit data
@@ -123,21 +120,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-black font-sans tracking-tight relative overflow-x-hidden">
-      {/* HEADER */}
-      <div className="absolute top-6 left-6 z-10">
-        <Link href="/" className="focus:outline-none">
-          <div className="bg-[#70E78A] border-2 border-[#04130C] shadow-[3px_3px_0_0_rgba(255,255,255,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
-            <h1 className="text-2xl font-black text-black">x402-limit</h1>
-          </div>
-        </Link>
-      </div>
-
-      {/* WALLET CONNECT BUTTON */}
-      <div className="absolute top-6 right-6 z-10">
-        <div className="connect-button-wrapper border-2 border-white shadow-[6px_6px_0_0_rgba(255,255,255,1)] rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 bg-[#70E78A]">
-          <ConnectButton showBalance={false} />
-        </div>
-      </div>
 
       {/* MAIN CONTENT */}
       <div className="pt-32 pb-20 px-4">
@@ -150,19 +132,35 @@ export default function DashboardPage() {
 
           {/* STATS SUMMARY */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border border-white/20 p-6 relative">
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
               <p className="text-sm font-bold text-white/60 mb-1">Total Limits</p>
               <p className="text-3xl font-black text-[#01FF84]">{limits.length}</p>
             </div>
-            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border border-white/20 p-6 relative">
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
               <p className="text-sm font-bold text-white/60 mb-1">Active</p>
               <p className="text-3xl font-black text-green-500">{limits.filter(l => l.status === 'active').length}</p>
             </div>
-            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border border-white/20 p-6 relative">
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
               <p className="text-sm font-bold text-white/60 mb-1">Warning</p>
               <p className="text-3xl font-black text-yellow-500">{limits.filter(l => l.status === 'warning').length}</p>
             </div>
-            <div className="bg-black border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] p-6 rounded-lg">
+            <div className="bg-black border border-white/20 p-6 relative">
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
               <p className="text-sm font-bold text-white/60 mb-1">Exceeded</p>
               <p className="text-3xl font-black text-red-500">{limits.filter(l => l.status === 'exceeded').length}</p>
             </div>
@@ -172,43 +170,59 @@ export default function DashboardPage() {
           <div className="flex flex-wrap gap-4 mb-8 justify-center">
             <button
               onClick={() => setFilter('all')}
-              className={`border-2 border-[##909090] shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`relative border border-white/20 px-6 py-2 font-bold transition-all duration-200 ${
                 filter === 'all'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
               }`}
             >
-              All Limits
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
+              <span className="relative z-10">All Limits</span>
             </button>
             <button
               onClick={() => setFilter('active')}
-              className={`border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`relative border border-white/20 px-6 py-2 font-bold transition-all duration-200 ${
                 filter === 'active'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
               }`}
             >
-              Active
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
+              <span className="relative z-10">Active</span>
             </button>
             <button
               onClick={() => setFilter('warning')}
-              className={`border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`relative border border-white/20 px-6 py-2 font-bold transition-all duration-200 ${
                 filter === 'warning'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
               }`}
             >
-              Warning
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
+              <span className="relative z-10">Warning</span>
             </button>
             <button
               onClick={() => setFilter('exceeded')}
-              className={`border-2 border-white shadow-[4px_2px_0_0_rgba(255,255,255,1)] px-6 py-2 rounded-lg font-bold transition-all duration-200 hover:shadow-[2px_2px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] ${
+              className={`relative border border-white/20 px-6 py-2 font-bold transition-all duration-200 ${
                 filter === 'exceeded'
                   ? 'bg-[#70E78A] text-black'
                   : 'bg-black text-white'
               }`}
             >
-              Exceeded
+              <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-[#01FF84]"></div>
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-[#01FF84]"></div>
+              <span className="relative z-10">Exceeded</span>
             </button>
           </div>
 

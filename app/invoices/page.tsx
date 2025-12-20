@@ -2,8 +2,6 @@
 
 import Link from 'next/link';
 import React from 'react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
 import Footer from '@/components/footer';
 
 interface Limit {
@@ -20,7 +18,6 @@ interface Limit {
 }
 
 export default function DashboardPage() {
-  const { isConnected } = useAccount();
   const [filter, setFilter] = React.useState<'all' | 'active' | 'warning' | 'exceeded'>('all');
 
   // Mock limit data
@@ -123,21 +120,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-black font-sans tracking-tight relative overflow-x-hidden">
-      {/* HEADER */}
-      <div className="absolute top-6 left-6 z-10">
-        <Link href="/" className="focus:outline-none">
-          <div className="bg-[#70E78A] border-2 border-white shadow-[6px_6px_0_0_rgba(255,255,255,1)] px-6 py-3 rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 flex items-center gap-3">
-            <h1 className="text-2xl font-black text-black">x402-limit</h1>
-          </div>
-        </Link>
-      </div>
-
-      {/* WALLET CONNECT BUTTON */}
-      <div className="absolute top-6 right-6 z-10">
-        <div className="connect-button-wrapper border-2 border-white shadow-[6px_6px_0_0_rgba(255,255,255,1)] rounded-lg cursor-pointer hover:shadow-[4px_4px_0_0_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 bg-[#70E78A]">
-          <ConnectButton showBalance={false} />
-        </div>
-      </div>
 
       {/* MAIN CONTENT */}
       <div className="pt-32 pb-20 px-4">
