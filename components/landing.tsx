@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import React from 'react';
 import MagicBento from './MagicBento';
+import DotGrid from './DotGrid';
 
 
 const faqs = [
@@ -55,40 +56,55 @@ export default function Landing() {
 
       {/* HERO */}
 
-      <div className="relative pt-40 pb-16 px-4 min-h-[100vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1644175283515-311a6926b8b2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8"
-            alt="Green dots background"
-            className="w-full h-full  opacity-30"
-            style={{ filter: 'brightness(1.1) contrast(1.2)' }}
-          />
-        </div>
-
-        <div className="text-center w-full relative z-10">
-
-          <div className="mb-6">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight">
-              Developer Guardrails for<br />
-              <span className="text-[#01FF84]">x402</span> on Mantle
-            </h1>
+      <div className="relative pt-40 pb-16 px-4 md:px-8 lg:px-12 min-h-[100vh] flex items-center overflow-hidden bg-black">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
+          {/* Left side - Text content */}
+          <div className="text-left">
+            <div className="mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
+                Developer Guardrails for<br />
+                <span className="text-[#01FF84]">x402</span> on Mantle
+              </h1>
             </div>
 
-          <div className="mb-8">
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-              Prevent unnecessary usage and control spending limits with powerful guardrails on Mantle blockchain.
-            </p>
+            <div className="mb-8">
+              <p className="text-lg md:text-xl text-white/80 max-w-2xl">
+                Prevent unnecessary usage and control spending limits with powerful guardrails on Mantle blockchain.
+              </p>
             </div>
 
             <div>
-            <button className="bg-[#70E78A] border border-transparent rounded-full px-6 py-2 text-sm font-bold text-black">
-              Get early access
-            </button>
+              <button className="bg-[#70E78A] border border-transparent rounded-full px-6 py-2 text-sm font-bold text-black hover:bg-[#34FF98] transition-colors">
+                Get early access
+              </button>
+            </div>
           </div>
 
+          {/* Right side - Circular dot grid with text */}
+          <div className="flex items-center justify-center lg:justify-end">
+            <div className="relative w-80 h-80 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] flex items-center justify-center">
+              {/* Circular dot grid container */}
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <DotGrid
+                  dotSize={2}
+                  gap={20}
+                  baseColor="#01FF84"
+                  activeColor="#34FF98"
+                  proximity={120}
+                  shockRadius={250}
+                  shockStrength={5}
+                  resistance={750}
+                  returnDuration={1.5}
+                />
+              </div>
+              
+              {/* Text in center */}
+              <div className="relative z-10">
+                <span className="text-white text-3xl md:text-4xl lg:text-5xl font-bold">x402-limit</span>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
 
       {/* 4 BOXES SECTION */}
