@@ -11,9 +11,9 @@ const faqs = [
 
   {
 
-    q: 'What is x402-limit?',
+    q: 'What is PayGate?',
 
-    a: 'x402-limit is a developer guardrail system for x402 that allows you to define spend limits, rate limits, and usage quotas on x402 calls. It prevents abuse and overuse by enforcing configurable constraints on API usage, helping developers control costs and protect their applications.'
+    a: 'PayGate is a developer guardrail system for x402 that allows you to define spend limits, rate limits, and usage quotas on x402 calls. It prevents abuse and overuse by enforcing configurable constraints on API usage, helping developers control costs and protect their applications.'
 
   },
 
@@ -100,7 +100,7 @@ export default function Landing() {
               
               {/* Text in center */}
               <div className="relative z-10">
-                <span className="text-white text-3xl md:text-4xl lg:text-5xl font-bold">x402-limit</span>
+                <span className="text-white text-3xl md:text-4xl lg:text-5xl font-bold">PayGate</span>
               </div>
             </div>
           </div>

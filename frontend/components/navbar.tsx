@@ -14,7 +14,7 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" className="focus:outline-none">
           <div className="bg-black border-2 border-[#04130C]  px-3 py-1 rounded-lg cursor-pointer  h transition-all duration-200 flex items-center gap-3">
-            <h1 className="text-2xl font-black text-[#70E78A]">x402-limit</h1>
+            <h1 className="text-2xl font-black text-[#70E78A]">PayGate</h1>
           </div>
         </Link>
 
