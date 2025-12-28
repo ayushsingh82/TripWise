@@ -7,3 +7,13 @@ node_modules
 .env.development
 .env.test
 .env.production
+
+.next
+.next/types
+.next/dev/types
+.next/dist
+.next/dist/types
+.next/dist/dev/types
+.next/dist/build
+.next/dist/build/types
+.next/dist/build/dev/types
