@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "x402-limit",
-  description: "x402-limit - Developer Guardrails for x402: Spend Limits, Rate Limits & Usage Quotas",
+  title: "PayGate - Unified One-Click Checkout for Web3",
+  description: "PayGate is a multi-token checkout SDK that lets users pay any on-chain merchant in a single transaction, even with fragmented assets. Combine tokens like 40% USDC + 30% ETH + 30% MNT—all in one click.",
 };
 
 export default function RootLayout({

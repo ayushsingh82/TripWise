@@ -13,31 +13,31 @@ const faqs = [
 
     q: 'What is PayGate?',
 
-    a: 'PayGate is a developer guardrail system for x402 that allows you to define spend limits, rate limits, and usage quotas on x402 calls. It prevents abuse and overuse by enforcing configurable constraints on API usage, helping developers control costs and protect their applications.'
+    a: 'PayGate is a unified one-click checkout SDK for Web3 that lets users pay any on-chain merchant in a single transaction, even when their wallet holds fragmented assets. Users can combine multiple tokens (e.g., 40% USDC + 30% ETH + 30% MNT) to cover purchases seamlessly.'
 
   },
 
   {
 
-    q: 'How do spend limits work?',
+    q: 'How does multi-token checkout work?',
 
-    a: 'Spend limits allow you to set maximum spending thresholds for x402 calls over a specific time period. Once the limit is reached, further calls are blocked until the limit resets. This helps prevent unexpected costs and budget overruns.'
-
-  },
-
-  {
-
-    q: 'What are rate limits?',
-
-    a: 'Rate limits control the frequency of x402 calls, preventing too many requests in a short time period. You can configure limits like "100 calls per minute" or "1000 calls per hour" to prevent abuse and ensure fair usage across your application.'
+    a: 'At checkout, PayGate fetches real-time prices from Chainlink or Mantle data feeds, displays the total value of each token in your wallet, and lets you combine them to cover the purchase. The SwapRouter smart contract aggregates all swaps and transfers in one atomic transaction—you sign only once.'
 
   },
 
   {
 
-    q: 'How are usage quotas enforced?',
+    q: 'What tokens can merchants receive?',
 
-    a: 'Usage quotas track total consumption over a billing period (daily, weekly, monthly). When a quota is exceeded, x402 calls are automatically blocked. Quotas can be set per API endpoint, user, or application-wide, giving you granular control over usage.'
+    a: 'Merchants can receive their preferred settlement token, such as PYUSD or mUSD. The SwapRouter handles all token conversions automatically, ensuring merchants get paid in their chosen currency while users pay with any combination of supported tokens.'
+
+  },
+
+  {
+
+    q: 'Is PayGate gas-efficient?',
+
+    a: 'Yes! PayGate uses Mantle\'s EVM to aggregate all swaps and transfers in a single atomic call. This means lower gas costs compared to multiple separate transactions, while maintaining full transparency and composability for developers via the @paygate/mantle-sdk.'
 
   },
 
@@ -62,21 +62,28 @@ export default function Landing() {
           <div className="text-left">
             <div className="mb-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
-                Developer Guardrails for<br />
-                <span className="text-[#01FF84]">x402</span> on Mantle
+                Unified One-Click<br />
+                <span className="text-[#01FF84]">Checkout for Web3</span>
               </h1>
             </div>
 
             <div className="mb-8">
               <p className="text-lg md:text-xl text-white/80 max-w-2xl">
-                Prevent unnecessary usage and control spending limits with powerful guardrails on Mantle blockchain.
+                Pay any on-chain merchant with fragmented assets in a single transaction. Combine tokens like 40% USDC + 30% ETH + 30% MNT—all in one click.
               </p>
             </div>
 
-            <div>
-              <button className="bg-[#70E78A] border border-transparent rounded-full px-6 py-2 text-sm font-bold text-black hover:bg-[#34FF98] transition-colors">
-                Get early access
-              </button>
+            <div className="flex gap-4">
+              <Link href="/checkout">
+                <button className="bg-[#70E78A] border border-transparent rounded-full px-6 py-2 text-sm font-bold text-black hover:bg-[#34FF98] transition-colors">
+                  Try Checkout Demo
+                </button>
+              </Link>
+              <Link href="/docs">
+                <button className="border-2 border-white rounded-full px-6 py-2 text-sm font-bold text-white hover:bg-white hover:text-black transition-colors">
+                  View SDK Docs
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -160,11 +167,11 @@ export default function Landing() {
           </h2>
 
           <div className="flex flex-wrap gap-3 justify-center mb-8">
-            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Offline NFT Marketplaces</span>
-            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">P2P Token Swaps</span>
-            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Local Content Sharing</span>
-            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">In-Game Item Trading</span>
-            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Decentralized File Sharing</span>
+            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">NFT Marketplaces</span>
+            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">DeFi Platforms</span>
+            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Web3 E-commerce</span>
+            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Gaming Marketplaces</span>
+            <span className="bg-[#04130C] border border-[#0D5036] text-white px-4 py-2 rounded-lg text-sm font-bold">Subscription Services</span>
           </div>
 
           <div className="flex items-center justify-center gap-4">
@@ -218,16 +225,16 @@ export default function Landing() {
 
         </section>
 
-        {/* BE THE FIRST TO ZYPP SECTION */}
+        {/* BE THE FIRST TO PAYGATE SECTION */}
         <section className="relative z-10 px-4 py-16 mt-0 overflow-hidden min-h-[50vh] flex items-center">
           <div className="max-w-2xl mx-auto text-center relative z-10">
             <h2 className="text-3xl font-black mb-4">
               <span className="text-white">Be the First to </span>
-              <span className="text-[#01FF84]">x402-limit</span>
+              <span className="text-[#01FF84]">PayGate</span>
             </h2>
             
             <p className="text-white/80 mb-8 text-lg">
-              Be the first to experience the future of offline crypto transactions. Join our waitlist to get early access, exclusive updates, and special offers.
+              Experience the future of Web3 checkout. Join our waitlist to get early access, exclusive updates, and special offers for merchants and developers.
             </p>
 
             <form className="relative max-w-md mx-auto">
