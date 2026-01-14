@@ -14,39 +14,12 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" className="focus:outline-none">
           <div className="bg-black border-2 border-[#04130C]  px-3 py-1 rounded-lg cursor-pointer  h transition-all duration-200 flex items-center gap-3">
-            <h1 className="text-2xl font-black text-[#70E78A]">PayGate</h1>
+            <h1 className="text-2xl font-black text-[#70E78A]">BCH</h1>
           </div>
         </Link>
 
         {/* NAVIGATION LINKS */}
         <div className="flex items-center gap-3">
-          <Link href="/checkout">
-            <span className={`border border-transparent rounded-full px-4 py-2 text-sm font-bold transition-all duration-200 ${
-              pathname === '/checkout'
-                ? 'bg-[#04130C] text-white'
-                : 'bg-transparent text-white hover:bg-[#04130C]'
-            }`}>
-              Checkout Demo
-            </span>
-          </Link>
-          <Link href="/merchants">
-            <span className={`border border-transparent rounded-full px-4 py-2 text-sm font-bold transition-all duration-200 ${
-              pathname === '/merchants'
-                ? 'bg-[#04130C] text-white'
-                : 'bg-transparent text-white hover:bg-[#04130C]'
-            }`}>
-              For Merchants
-            </span>
-          </Link>
-          <Link href="/docs">
-            <span className={`border border-transparent rounded-full px-4 py-2 text-sm font-bold transition-all duration-200 ${
-              pathname === '/docs'
-                ? 'bg-[#04130C] text-white'
-                : 'bg-transparent text-white hover:bg-[#04130C]'
-            }`}>
-              SDK Docs
-            </span>
-          </Link>
         </div>
 
         {/* WALLET CONNECT BUTTON */}

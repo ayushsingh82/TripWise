@@ -26,7 +26,7 @@ export default function Footer() {
 
           <div className="text-white font-black text-lg flex items-center gap-2">
 
-            PayGate
+            BCH
 
           </div>
 

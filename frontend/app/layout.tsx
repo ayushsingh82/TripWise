@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PayGate - Unified One-Click Checkout for Web3",
-  description: "PayGate is a multi-token checkout SDK that lets users pay any on-chain merchant in a single transaction, even with fragmented assets. Combine tokens like 40% USDC + 30% ETH + 30% MNT—all in one click.",
+  title: "BCH - Bitcoin Cash Hackathon",
+  description: "Building on Bitcoin Cash. Join the hackathon and build innovative solutions across three tracks: Technology, Cashtoken Systems, and Applications.",
 };
 
 export default function RootLayout({
