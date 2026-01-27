@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import Navbar from "@/components/navbar";
@@ -14,9 +14,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "BCH - Bitcoin Cash Hackathon",
-  description: "Building on Bitcoin Cash. Join the hackathon and build innovative solutions across three tracks: Technology, Cashtoken Systems, and Applications.",
+  title: "encode-hack — Subscription & Recurring Charge Audit",
+  description: "Audit your subscriptions and recurring charges. Upload or paste transactions, get plain-language suggestions (keep / reduce / cancel)—no product pitches. Comik Hackathon · Financial Health track.",
 };
 
 export default function RootLayout({
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
       >
         <Providers>
           <Navbar />

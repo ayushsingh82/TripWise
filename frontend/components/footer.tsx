@@ -25,9 +25,7 @@ export default function Footer() {
           {/* Name */}
 
           <div className="text-white font-black text-lg flex items-center gap-2">
-
-            BCH
-
+            encode-hack
           </div>
 
           
