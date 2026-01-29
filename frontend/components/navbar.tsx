@@ -1,26 +1,62 @@
 'use client';
 
 import Link from 'next/link';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function Navbar() {
   return (
     <>
-      <nav className="absolute top-6 left-0 right-0 z-10 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="focus:outline-none">
-            <div className="bg-black border-2 border-[#04130C] px-3 py-1 rounded-lg cursor-pointer h transition-all duration-200 flex items-center gap-3">
-              <h1 className="text-2xl font-black text-[#70E78A]">encode-hack</h1>
-            </div>
+      <div className="relative z-10 pt-6 px-6">
+        <nav
+          className="mx-auto max-w-7xl rounded-full border backdrop-blur-md px-6 py-2 sm:px-8 sm:py-2 flex items-center justify-between"
+          style={{ backgroundColor: 'rgba(31, 0, 0, 0.85)', borderColor: 'rgba(125, 94, 60, 0.45)' }}
+        >
+          <Link href="/" className="focus:outline-none shrink-0">
+            <span
+              className="font-serif-display font-bold text-xl sm:text-2xl tracking-tight"
+              style={{
+                background: 'linear-gradient(135deg, #D4AE98, #D8B6A0)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              TripWise
+            </span>
           </Link>
-
-          <div className="connect-button-wrapper border-2 border-white rounded-lg cursor-pointer transition-all duration-200 bg-[#70E78A]">
-            <ConnectButton showBalance={false} />
+          <div className="flex-1 flex items-center justify-center gap-4 sm:gap-6 px-4">
+            <Link
+              href="/dashboard"
+              className="font-serif-display text-sm font-medium transition-colors hover:opacity-90"
+              style={{ color: '#FFC6A4' }}
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/plan"
+              className="font-serif-display text-sm font-medium transition-colors hover:opacity-90"
+              style={{ color: '#FFC6A4' }}
+            >
+              Plan
+            </Link>
           </div>
-        </div>
-      </nav>
-      <div className="border-t border-white/20 mt-20"></div>
+          <div className="flex items-center gap-4 sm:gap-5 shrink-0">
+            <Link
+              href="/login"
+              className="font-serif-display text-sm sm:text-base font-medium transition-colors hover:opacity-90"
+              style={{ color: '#FFC6A4' }}
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="font-serif-display text-sm sm:text-base font-medium transition-colors hover:opacity-90"
+              style={{ color: '#FFC6A4' }}
+            >
+              Sign up
+            </Link>
+          </div>
+        </nav>
+      </div>
     </>
   );
 }
-

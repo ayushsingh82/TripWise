@@ -12,20 +12,28 @@ export default function Footer() {
 
       {/* White line above footer */}
 
-      <div className="border-t-2 border-white/20"></div>
+      <div className="border-t" style={{ borderColor: 'rgba(125, 94, 60, 0.45)' }}></div>
 
       
 
       {/* Footer */}
 
-      <footer className="bg-black py-6 px-4">
+      <footer className="py-6 px-4" style={{ backgroundColor: '#1F0000' }}>
 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
           {/* Name */}
 
-          <div className="text-white font-black text-lg flex items-center gap-2">
-            encode-hack
+          <div
+            className="font-black text-lg flex items-center gap-2"
+            style={{
+              background: 'linear-gradient(135deg, #D4AE98, #D8B6A0)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            TripWise
           </div>
 
           
@@ -42,7 +50,8 @@ export default function Footer() {
 
               rel="noopener noreferrer" 
 
-              className="text-white hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-opacity"
+            style={{ color: '#FFC6A4' }}
 
               aria-label="GitHub"
 
@@ -64,7 +73,8 @@ export default function Footer() {
 
               rel="noopener noreferrer" 
 
-              className="text-white hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-opacity"
+            style={{ color: '#FFC6A4' }}
 
               aria-label="Twitter"
 

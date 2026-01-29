@@ -21,8 +21,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "encode-hack — Subscription & Recurring Charge Audit",
-  description: "Audit your subscriptions and recurring charges. Upload or paste transactions, get plain-language suggestions (keep / reduce / cancel)—no product pitches. Comik Hackathon · Financial Health track.",
+  title: "TripWise — Travel Budget Agent",
+  description: "Understand flight and hotel costs, get savings suggestions in plain language. Smarter travel choices, no overwhelm. Comik Hackathon · Financial Health track.",
 };
 
 export default function RootLayout({

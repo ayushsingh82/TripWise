@@ -1,77 +1,44 @@
-# BCH - Bitcoin Cash Hackathon Project
+# TripWise — Travel Budget Agent
 
-This is a [Next.js](https://nextjs.org) project for the Bitcoin Cash hackathon.
+**TripWise** is an AI-powered **travel budget agent** that helps users understand flight and hotel costs, get savings suggestions in plain language, and make informed travel spending decisions. Built for the Comik Hackathon (Financial Health track) with **Comet Opik** for observability and experimentation.
 
-## Getting Started
+## What it does
 
-First, run the development server:
+- **Plan a trip** — Enter route, dates, and budget; the agent suggests options and explains tradeoffs in plain language.
+- **Understand where your money goes** — Cost breakdowns for flights and hotels without the overwhelm.
+- **Savings opportunities** — “You could save $X by…” (e.g. flexible dates, nearby airports) in simple terms.
+- **Financial decisions** — No product pitches; focus on helping users make informed choices about travel spend.
+
+## Tech stack
+
+- **Next.js** (App Router), Node runtime
+- **Comet Opik** (tracing, metrics, evals)
+- **LLM** (OpenAI / Gemini / Grok) — swappable provider
+- **PostgreSQL** (optional) — Supabase / Neon compatible
+- Vercel-friendly deployment
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Use **Plan trip** to describe your trip and get agent suggestions (MVP: form + placeholder; backend/agent wiring next).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-## Hackathon Tracks
+- `/app` — Landing (TripWise hero), `/plan` (trip input + suggestions)
+- `/api` — (To add) `generate-suggestions` — agent for flight/hotel options and savings
+- `/lib` — LLM provider, Opik client, prompts
 
-### 🏗️ TECHNOLOGY TRACK
-Innovative infrastructure, developer tooling, and middleware for building on Bitcoin Cash. This is for builders creating the scaffolding: contract compilers, minting SDKs, explorers, simulators, signing flows, APIs — anything that makes BCH and CashTokens easier to build with. Whether you're wrapping complexity, unlocking UTXO capabilities, or pioneering novel DeFi primitives, this track is about empowering others to build faster, better, and with less friction. If your project enables other builders, you're in Technology.
+## Hackathon
 
-**What fits here?**
-- Contract compilers
-- Minting SDKs
-- Explorers
-- Simulators
-- Signing flows
-- APIs
-- Developer tooling
-- Middleware
+- **Track:** Financial Health — empower better financial decisions and money management.
+- **Judging:** Functionality, real-world relevance, use of LLMs/agents.
+- **Opik:** Traces, metrics, evals, and A/B (e.g. friendly vs direct tone) for demo.
 
-### 🧠 CASHTOKEN SYSTEMS TRACK
-On-chain protocols, coordination layers, and incentive systems built with CashTokens. This track is for token-powered logic: DAOs, DEXs, launchpads, NFT economies, staking contracts, auctions, redemption flows, governance layers, and financial instruments. You're not just building an app — you're building a system. A shell. A behavior engine. A protocol someone else might plug into. If your project designs economic or coordination logic, you're in Cashtoken Systems.
+## Learn more
 
-**What fits here?**
-- DAOs
-- DEXs
-- Launchpads
-- NFT economies
-- Staking contracts
-- Auctions
-- Redemption flows
-- Governance layers
-- Financial instruments
-
-### 🚀 APPLICATIONS TRACK
-User-facing apps, tools, and interfaces that activate Bitcoin Cash in the real world. This is for builders shipping apps people can actually use — wallets, dashboards, plugins, bots, payment flows, onboarding tools, or bridges between crypto and real-world utility. It doesn't need to invent a new contract — but it should deliver something usable, frictionless, and real. If your project connects BCH to people, purpose, or problems — you're in Applications.
-
-**What fits here?**
-- Wallets
-- Dashboards
-- Plugins
-- Bots
-- Payment flows
-- Onboarding tools
-- Bridges between crypto and real-world utility
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Comet Opik](https://www.comet.com/docs/opik/)
