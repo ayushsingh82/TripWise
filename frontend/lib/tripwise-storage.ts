@@ -1,5 +1,13 @@
 export const STORAGE_KEY = 'tripwise_previous_trips';
 
+export interface TripItem {
+  id: string;
+  text: string;
+  priority: 'high' | 'medium' | 'low';
+  status: 'pending' | 'done';
+  important: boolean;
+}
+
 export interface SavedTrip {
   id: string;
   from: string;
@@ -7,6 +15,7 @@ export interface SavedTrip {
   dates: string;
   budget: string;
   createdAt: number;
+  items?: TripItem[];
 }
 
 const TRIP_IMAGES: Record<string, string> = {
