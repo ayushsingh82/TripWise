@@ -58,3 +58,29 @@ export function saveTripsToStorage(trips: SavedTrip[]): void {
     // ignore
   }
 }
+
+/** Update a single item within a trip (e.g. mark done or important). */
+export function updateTripItem(
+  tripId: string,
+  itemId: string,
+  updates: Partial<Pick<TripItem, 'status' | 'important'>>
+): void {
+  const trips = getSavedTrips();
+  const trip = trips.find((t) => t.id === tripId);
+  if (!trip?.items) return;
+  const item = trip.items.find((i) => i.id === itemId);
+  if (!item) return;
+  if (updates.status !== undefined) item.status = updates.status;
+  if (updates.important !== undefined) item.important = updates.important;
+  saveTripsToStorage(trips);
+}
+
+/** Add or replace a trip (e.g. after accepting AI-generated plan). */
+export function addOrUpdateTrip(trip: SavedTrip): void {
+  const trips = getSavedTrips();
+  const idx = trips.findIndex((t) => t.id === trip.id);
+  const next = idx >= 0 ? [...trips] : [trip, ...trips];
+  if (idx >= 0) next[idx] = trip;
+  else next[0] = trip;
+  saveTripsToStorage(next.slice(0, 24));
+}

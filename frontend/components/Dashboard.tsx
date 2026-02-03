@@ -7,11 +7,136 @@ import {
   getSavedTrips,
   getImageForDestination,
   saveTripsToStorage,
+  updateTripItem,
   type SavedTrip,
+  type TripItem,
 } from '@/lib/tripwise-storage';
 
-const BORDER_LIGHT = 'rgba(125, 94, 60, 0.35)';
+const BORDER_LIGHT = 'rgba(125, 94, 60, 0.45)';
 const CARD_BG = 'rgba(31, 0, 0, 0.5)';
+const BOX_CREAM = '#F5F0E8';
+const TEXT_ON_CREAM = '#2C1810';
+const TEXT_MUTED = '#5C4A3A';
+const CREAM_SOFT = '#EDE6DC';
+
+async function logTripAction(tripId: string, itemId: string, action: string) {
+  try {
+    await fetch('/api/trip/log-action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tripId, itemId, action }),
+    });
+  } catch (_) {
+    // best-effort Opik logging
+  }
+}
+
+function TripItineraryPanel({
+  trip,
+  onClose,
+  onUpdateItem,
+}: {
+  trip: SavedTrip;
+  onClose: () => void;
+  onUpdateItem: (itemId: string, updates: Partial<Pick<TripItem, 'status' | 'important'>>) => void;
+}) {
+  const handleDone = (item: TripItem) => {
+    const nextStatus = item.status === 'done' ? 'pending' : 'done';
+    onUpdateItem(item.id, { status: nextStatus });
+    logTripAction(trip.id, item.id, nextStatus);
+  };
+  const handleImportant = (item: TripItem) => {
+    const next = !item.important;
+    onUpdateItem(item.id, { important: next });
+    logTripAction(trip.id, item.id, next ? 'important' : 'pending');
+  };
+
+  const items = trip.items ?? [];
+  return (
+    <div
+      className="mt-8 rounded-2xl border p-6 sm:p-8 shadow-lg"
+      style={{ borderColor: BORDER_LIGHT, backgroundColor: BOX_CREAM }}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-serif-display text-xl font-semibold" style={{ color: TEXT_ON_CREAM }}>
+          {trip.from} → {trip.to}
+        </h3>
+        <button
+          type="button"
+          onClick={onClose}
+          className="text-sm px-3 py-1.5 rounded-full border transition-colors hover:opacity-90"
+          style={{ borderColor: BORDER_LIGHT, color: TEXT_ON_CREAM }}
+        >
+          Close
+        </button>
+      </div>
+      <p className="text-sm opacity-90 mb-4" style={{ color: TEXT_MUTED }}>
+        {trip.dates && `${trip.dates} · `}
+        {trip.budget && `${trip.budget}`}
+      </p>
+      {items.length > 0 ? (
+        <ul className="space-y-3">
+          {items.map((item) => (
+            <li
+              key={item.id}
+              className="px-4 py-3 rounded-xl border flex flex-wrap items-center justify-between gap-3"
+              style={{
+                borderColor: BORDER_LIGHT,
+                backgroundColor: CREAM_SOFT,
+                opacity: item.status === 'done' ? 0.85 : 1,
+              }}
+            >
+              <div className="flex-1 min-w-0">
+                <p className={`font-medium ${item.status === 'done' ? 'line-through' : ''}`} style={{ color: TEXT_ON_CREAM }}>
+                  {item.text}
+                </p>
+                <span
+                  className="inline-block mt-2 text-xs px-2.5 py-1 rounded-lg capitalize"
+                  style={{
+                    backgroundColor: item.priority === 'high' ? 'rgba(180, 80, 60, 0.2)' : item.priority === 'medium' ? 'rgba(125, 94, 60, 0.25)' : 'rgba(80, 100, 120, 0.2)',
+                    color: TEXT_ON_CREAM,
+                  }}
+                >
+                  {item.priority}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => handleDone(item)}
+                  className="text-sm px-3 py-2 rounded-full border transition-colors"
+                  style={{
+                    borderColor: BORDER_LIGHT,
+                    color: item.status === 'done' ? TEXT_MUTED : TEXT_ON_CREAM,
+                    backgroundColor: item.status === 'done' ? 'rgba(125, 94, 60, 0.2)' : 'transparent',
+                  }}
+                >
+                  {item.status === 'done' ? '✓ Done' : 'Mark done'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleImportant(item)}
+                  className="text-sm px-3 py-2 rounded-full border transition-colors"
+                  style={{
+                    borderColor: BORDER_LIGHT,
+                    color: item.important ? TEXT_MUTED : TEXT_ON_CREAM,
+                    backgroundColor: item.important ? 'rgba(125, 94, 60, 0.2)' : 'transparent',
+                  }}
+                >
+                  {item.important ? '★ Important' : 'Important'}
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-sm opacity-70" style={{ color: TEXT_MUTED }}>
+          No itinerary items yet. Generate a trip on the Plan page to see tasks here.
+        </p>
+      )}
+    </div>
+  );
+}
 
 // Dummy trip: Japan — Kyoto, Tokyo, Mount Fuji
 const DUMMY_JAPAN_TRIP: SavedTrip = {
@@ -46,6 +171,9 @@ export default function Dashboard() {
   const displayTrips = [DUMMY_JAPAN_TRIP, ...trips];
   const isDummy = (id: string) => id === DUMMY_JAPAN_TRIP.id;
 
+  const totalItems = trips.reduce((acc, t) => acc + (t.items?.length ?? 0), 0);
+  const doneItems = trips.reduce((acc, t) => acc + (t.items?.filter((i) => i.status === 'done').length ?? 0), 0);
+
   if (!mounted) {
     return (
       <div className="min-h-screen font-sans" style={{ backgroundColor: '#1F0000' }}>
@@ -74,41 +202,54 @@ export default function Dashboard() {
           <div
             className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10"
             style={{
-              background: 'linear-gradient(to top, rgba(31,0,0,0.88) 0%, transparent 65%)',
+              background: 'linear-gradient(to top, rgba(31,0,0,0.9) 0%, transparent 60%)',
             }}
           >
             <p className="text-xs sm:text-sm font-medium uppercase tracking-wider mb-1" style={{ color: '#FFC6A4' }}>
               Your trips
             </p>
-            <h1 className="font-serif-display text-2xl sm:text-4xl font-bold mb-1" style={{ color: '#FFC6A4' }}>
+            <h1 className="font-serif-display text-2xl sm:text-4xl font-bold mb-2" style={{ color: '#FFC6A4' }}>
               Dashboard
             </h1>
-            <p className="text-sm sm:text-base max-w-xl opacity-90" style={{ color: '#D4AE98' }}>
-              Previous trip plans and destinations. Open a trip to see flight & hotel itinerary.
+            <p className="text-sm sm:text-base max-w-xl opacity-95" style={{ color: '#D4AE98' }}>
+              Your saved trip plans. Open a trip to view the itinerary and mark items done or important.
             </p>
           </div>
         </div>
       </section>
 
       <div className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-          <h2 className="font-serif-display text-lg font-semibold" style={{ color: '#FFC6A4' }}>
-            Your trips
-          </h2>
+        {/* Stats + actions */}
+        <div className="rounded-2xl border p-4 sm:p-5 mb-6 flex flex-wrap items-center justify-between gap-4" style={{ borderColor: BORDER_LIGHT, backgroundColor: BOX_CREAM }}>
+          <div className="flex flex-wrap items-center gap-6">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider opacity-80" style={{ color: TEXT_MUTED }}>Trips</p>
+              <p className="font-serif-display text-2xl font-bold" style={{ color: TEXT_ON_CREAM }}>{displayTrips.length}</p>
+            </div>
+            {totalItems > 0 && (
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider opacity-80" style={{ color: TEXT_MUTED }}>Itinerary progress</p>
+                <p className="font-serif-display text-2xl font-bold" style={{ color: TEXT_ON_CREAM }}>{doneItems}/{totalItems} done</p>
+              </div>
+            )}
+          </div>
           <Link
             href="/plan"
-            className="font-serif-display text-sm font-medium px-5 py-2.5 rounded-full border transition-colors hover:opacity-90"
-            style={{ borderColor: BORDER_LIGHT, color: '#FFC6A4' }}
+            className="font-serif-display text-sm font-medium px-5 py-2.5 rounded-full border transition-colors hover:opacity-95"
+            style={{ borderColor: BORDER_LIGHT, color: TEXT_ON_CREAM, backgroundColor: 'rgba(125, 94, 60, 0.15)' }}
           >
             Plan new trip
           </Link>
         </div>
 
+        <h2 className="font-serif-display text-lg font-semibold mb-4" style={{ color: '#FFC6A4' }}>
+          Your trips
+        </h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {displayTrips.map((trip) => (
             <li
               key={trip.id}
-              className="rounded-2xl overflow-hidden border transition-all hover:opacity-95"
+              className="rounded-2xl overflow-hidden border transition-all hover:opacity-95 shadow-md"
               style={{
                 borderColor: openTripId === trip.id ? 'rgba(125, 94, 60, 0.7)' : BORDER_LIGHT,
                 backgroundColor: CARD_BG,
@@ -209,36 +350,20 @@ export default function Dashboard() {
           ))}
         </ul>
 
-        {/* Generic itinerary for other trips (simple placeholder) */}
+        {/* Itinerary for saved trips (with items: mark done / important) */}
         {openTripId && openTripId !== DUMMY_JAPAN_TRIP.id && (() => {
           const trip = trips.find((t) => t.id === openTripId);
           if (!trip) return null;
+          const items = trip.items ?? [];
           return (
-            <div
-              className="mt-8 rounded-2xl border p-6 sm:p-8"
-              style={{ borderColor: BORDER_LIGHT, backgroundColor: CARD_BG }}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-serif-display text-xl font-semibold" style={{ color: '#FFC6A4' }}>
-                  {trip.from} → {trip.to}
-                </h3>
-                <button
-                  type="button"
-                  onClick={() => setOpenTripId(null)}
-                  className="text-sm px-3 py-1.5 rounded-full border transition-colors hover:opacity-90"
-                  style={{ borderColor: BORDER_LIGHT, color: '#FFC6A4' }}
-                >
-                  Close
-                </button>
-              </div>
-              <p className="text-sm opacity-90" style={{ color: '#D4AE98' }}>
-                {trip.dates && `${trip.dates} · `}
-                {trip.budget && `${trip.budget}`}
-              </p>
-              <p className="mt-3 text-sm opacity-70" style={{ color: '#D4AE98' }}>
-                Flight and hotel details will appear here once you get suggestions from the Plan page.
-              </p>
-            </div>
+            <TripItineraryPanel
+              trip={trip}
+              onClose={() => setOpenTripId(null)}
+              onUpdateItem={(itemId, updates) => {
+                updateTripItem(trip.id, itemId, updates);
+                setTrips(getSavedTrips());
+              }}
+            />
           );
         })()}
       </div>

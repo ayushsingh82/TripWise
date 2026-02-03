@@ -22,19 +22,15 @@ export default function Footer() {
 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
 
-          {/* Name */}
-
-          <div
-            className="font-black text-lg flex items-center gap-2"
-            style={{
-              background: 'linear-gradient(135deg, #D4AE98, #D8B6A0)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            TripWise
-          </div>
+          {/* Name — same font as navbar (font-serif-display, bold) */}
+          <Link href="/" className="focus:outline-none shrink-0">
+            <span
+              className="font-serif-display font-bold text-lg sm:text-xl tracking-tight"
+              style={{ color: '#FFC6A4' }}
+            >
+              TripWise
+            </span>
+          </Link>
 
           
 

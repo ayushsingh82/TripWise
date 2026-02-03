@@ -44,19 +44,30 @@ export default function Landing() {
                   </p>
                 </div>
 
-                {/* Main headline — gradient text like reference */}
+                {/* Main headline — solid cream so it’s always visible on dark/LightPillar */}
                 <h1
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif-display font-medium leading-tight drop-shadow-xl"
-                  style={{
-                    background: 'linear-gradient(135deg, #D4AE98, #D8B6A0)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
+                  style={{ color: '#FFC6A4' }}
                 >
-                  TripWise
+                  <span className="relative inline-block text-[#FFC6A4]">
+                    TripWise
+                    <svg
+                      className="absolute left-0 w-full overflow-visible"
+                      style={{ bottom: '-0.15em', height: '0.4em' }}
+                      viewBox="0 0 200 24"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M 0 18 Q 100 0 200 18"
+                        fill="none"
+                        stroke="#E8B890"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
                   <br />
-                  <span className="italic" style={{ background: 'none', WebkitTextFillColor: '#FFC6A4', color: '#FFC6A4' }}>Travel budget agent.</span>
+                  <span className="italic text-[#D4AE98]">Travel budget agent.</span>
                 </h1>
 
                 {/* Subtext — gradient */}
