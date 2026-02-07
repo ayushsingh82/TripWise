@@ -138,7 +138,7 @@ function TripItineraryPanel({
   );
 }
 
-// Dummy trip: Japan — Kyoto, Tokyo, Mount Fuji
+// Demo trip: Japan — links to full trip page
 const DUMMY_JAPAN_TRIP: SavedTrip = {
   id: 'dummy-japan',
   from: 'Home',
@@ -149,6 +149,60 @@ const DUMMY_JAPAN_TRIP: SavedTrip = {
 };
 
 const JAPAN_IMAGE = 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80';
+
+// Demo trips with sample itineraries (expand to view)
+const DEMO_TRIPS: SavedTrip[] = [
+  {
+    id: 'demo-paris',
+    from: 'NYC',
+    to: 'Paris',
+    dates: 'Jun 10–17, 2025',
+    budget: '$2,800',
+    createdAt: 1,
+    items: [
+      { id: '1', text: 'Book round-trip flight NYC → Paris (CDG) – compare Air France, Delta; mid-week for better fares', priority: 'high', status: 'pending', important: false },
+      { id: '2', text: 'Reserve hotel in Le Marais or Saint-Germain for 6 nights – central and walkable', priority: 'high', status: 'pending', important: false },
+      { id: '3', text: 'Visit Louvre (book timed slot online) and Eiffel Tower', priority: 'high', status: 'pending', important: false },
+      { id: '4', text: 'Explore Montmartre, Sacré-Cœur, and street artists', priority: 'medium', status: 'pending', important: false },
+      { id: '5', text: 'Day trip to Versailles – palace and gardens', priority: 'medium', status: 'pending', important: false },
+      { id: '6', text: 'Seine cruise and dinner in Saint-Germain', priority: 'low', status: 'pending', important: false },
+    ],
+  },
+  {
+    id: 'demo-bali',
+    from: 'Singapore',
+    to: 'Bali',
+    dates: 'Aug 5–14, 2025',
+    budget: '$1,600',
+    createdAt: 2,
+    items: [
+      { id: '1', text: 'Book flight Singapore → Denpasar (DPS) – ~2.5h; consider Garuda or AirAsia', priority: 'high', status: 'pending', important: false },
+      { id: '2', text: 'Stay in Ubud 4 nights (rice terraces, yoga) + Seminyak 3 nights (beach)', priority: 'high', status: 'pending', important: false },
+      { id: '3', text: 'Visit Tegallalang Rice Terraces and Tirta Empul temple', priority: 'high', status: 'pending', important: false },
+      { id: '4', text: 'Day trip to Nusa Penida or Uluwatu for cliffs and beaches', priority: 'medium', status: 'pending', important: false },
+      { id: '5', text: 'Balinese cooking class or spa in Ubud', priority: 'medium', status: 'pending', important: false },
+      { id: '6', text: 'Sunset at Tanah Lot temple', priority: 'low', status: 'pending', important: false },
+    ],
+  },
+  {
+    id: 'demo-newyork',
+    from: 'London',
+    to: 'New York',
+    dates: 'Dec 20–28, 2025',
+    budget: '$3,200',
+    createdAt: 3,
+    items: [
+      { id: '1', text: 'Book round-trip flight LHR → JFK/EWR – British Airways, Virgin, or United', priority: 'high', status: 'pending', important: false },
+      { id: '2', text: 'Hotel in Midtown or SoHo – 7 nights; book early for Christmas week', priority: 'high', status: 'pending', important: false },
+      { id: '3', text: 'Empire State Building, Top of the Rock, or Edge for skyline views', priority: 'high', status: 'pending', important: false },
+      { id: '4', text: 'Central Park, Met Museum, and Fifth Avenue', priority: 'medium', status: 'pending', important: false },
+      { id: '5', text: 'Brooklyn Bridge walk and DUMBO', priority: 'medium', status: 'pending', important: false },
+      { id: '6', text: 'Broadway show and Times Square', priority: 'low', status: 'pending', important: false },
+    ],
+  },
+];
+
+const DEMO_TRIP_IDS = new Set([DUMMY_JAPAN_TRIP.id, ...DEMO_TRIPS.map((t) => t.id)]);
 
 export default function Dashboard() {
   const [trips, setTrips] = useState<SavedTrip[]>([]);
@@ -161,15 +215,16 @@ export default function Dashboard() {
   }, []);
 
   const removeTrip = useCallback((id: string) => {
-    if (id === DUMMY_JAPAN_TRIP.id) return;
+    if (DEMO_TRIP_IDS.has(id)) return;
     const next = trips.filter((t) => t.id !== id);
     setTrips(next);
     saveTripsToStorage(next);
     if (openTripId === id) setOpenTripId(null);
   }, [trips, openTripId]);
 
-  const displayTrips = [DUMMY_JAPAN_TRIP, ...trips];
-  const isDummy = (id: string) => id === DUMMY_JAPAN_TRIP.id;
+  const displayTrips = [DUMMY_JAPAN_TRIP, ...DEMO_TRIPS, ...trips];
+  const isDemo = (id: string) => DEMO_TRIP_IDS.has(id);
+  const isJapanDemo = (id: string) => id === DUMMY_JAPAN_TRIP.id;
 
   const totalItems = trips.reduce((acc, t) => acc + (t.items?.length ?? 0), 0);
   const doneItems = trips.reduce((acc, t) => acc + (t.items?.filter((i) => i.status === 'done').length ?? 0), 0);
@@ -256,7 +311,7 @@ export default function Dashboard() {
                 boxShadow: openTripId === trip.id ? '0 0 0 1px rgba(125, 94, 60, 0.5)' : undefined,
               }}
             >
-              {isDummy(trip.id) ? (
+              {isJapanDemo(trip.id) ? (
                 <Link href="/trip/japan" className="block w-full text-left">
                   <div className="relative h-40 sm:h-44">
                     <Image
@@ -291,6 +346,45 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </Link>
+              ) : isDemo(trip.id) ? (
+                <button
+                  type="button"
+                  onClick={() => setOpenTripId(openTripId === trip.id ? null : trip.id)}
+                  className="w-full text-left block"
+                >
+                  <div className="relative h-40 sm:h-44">
+                    <Image
+                      src={getImageForDestination(trip.to)}
+                      alt={trip.to}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div
+                      className="absolute inset-0 flex flex-col justify-end p-4"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(31,0,0,0.88) 0%, transparent 60%)',
+                      }}
+                    >
+                      <p className="font-medium text-sm sm:text-base truncate" style={{ color: '#FFC6A4' }}>
+                        {trip.from} → {trip.to}
+                      </p>
+                      {trip.dates && (
+                        <p className="text-xs mt-0.5 opacity-90" style={{ color: '#D4AE98' }}>
+                          {trip.dates}
+                        </p>
+                      )}
+                      {trip.budget && (
+                        <p className="text-xs opacity-80" style={{ color: '#D4AE98' }}>
+                          {trip.budget}
+                        </p>
+                      )}
+                      <p className="text-xs mt-1.5 opacity-80" style={{ color: '#D4AE98' }}>
+                        {openTripId === trip.id ? '▼ Close itinerary' : '▶ View itinerary'}
+                      </p>
+                    </div>
+                  </div>
+                </button>
               ) : (
                 <>
                   <button
@@ -350,18 +444,20 @@ export default function Dashboard() {
           ))}
         </ul>
 
-        {/* Itinerary for saved trips (with items: mark done / important) */}
+        {/* Itinerary panel for open trip (saved or demo) */}
         {openTripId && openTripId !== DUMMY_JAPAN_TRIP.id && (() => {
-          const trip = trips.find((t) => t.id === openTripId);
+          const trip = displayTrips.find((t) => t.id === openTripId);
           if (!trip) return null;
-          const items = trip.items ?? [];
+          const isDemoTrip = DEMO_TRIP_IDS.has(trip.id);
           return (
             <TripItineraryPanel
               trip={trip}
               onClose={() => setOpenTripId(null)}
               onUpdateItem={(itemId, updates) => {
-                updateTripItem(trip.id, itemId, updates);
-                setTrips(getSavedTrips());
+                if (!isDemoTrip) {
+                  updateTripItem(trip.id, itemId, updates);
+                  setTrips(getSavedTrips());
+                }
               }}
             />
           );
