@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useCallback } from 'react';
-import { addOrUpdateTrip, type SavedTrip, type TripItem } from '@/lib/tripwise-storage';
+import { addOrUpdateTrip, getPreferredStyle, type SavedTrip, type TripItem } from '@/lib/tripwise-storage';
 
 const BORDER_LIGHT = 'rgba(125, 94, 60, 0.5)';
 const CARD_BG = 'rgba(31, 0, 0, 0.5)';
@@ -18,6 +18,7 @@ interface GeneratedPlan {
   to: string;
   dates: string;
   budget: string;
+  variant?: 'A' | 'B';
   items: (TripItem & { status: 'pending' | 'done'; important: boolean })[];
 }
 
@@ -39,10 +40,18 @@ export default function TripPlanner() {
     setError(null);
     setPlan(null);
     try {
+      const preferredStyle = getPreferredStyle();
       const res = await fetch('/api/trip/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, from: from.trim(), to: to.trim(), dates: dates.trim(), budget: budget.trim() }),
+        body: JSON.stringify({
+          prompt,
+          from: from.trim(),
+          to: to.trim(),
+          dates: dates.trim(),
+          budget: budget.trim(),
+          preferredStyle: preferredStyle ?? undefined,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to generate trip');
@@ -63,6 +72,7 @@ export default function TripPlanner() {
       dates: plan.dates,
       budget: plan.budget,
       createdAt: Date.now(),
+      variant: plan.variant,
       items: plan.items.map((it) => ({ id: it.id, text: it.text, priority: it.priority, status: it.status, important: it.important })),
     };
     addOrUpdateTrip(saved);
@@ -166,11 +176,12 @@ export default function TripPlanner() {
             </div>
           </div>
           <div className="mt-5">
-            <label className="block text-xs font-medium uppercase tracking-wider mb-1.5 opacity-80" style={{ color: TEXT_MUTED }}>Or describe your trip</label>
+            <label className="block text-xs font-medium uppercase tracking-wider mb-1.5 opacity-80" style={{ color: TEXT_MUTED }}>Import trip notes</label>
+            <p className="text-xs opacity-80 mb-1.5" style={{ color: TEXT_MUTED }}>Paste a description, list of places, or copy from another app.</p>
             <textarea
               value={rawText}
               onChange={(e) => setRawText(e.target.value)}
-              placeholder="e.g. 5 days in Tokyo, temples and food, mid-range budget"
+              placeholder="e.g. 5 days in Tokyo, temples and food, mid-range budget — or paste from notes"
               className="w-full min-h-[90px] px-4 py-3 rounded-xl border resize-y focus:outline-none focus:ring-2 focus:ring-[#7D5E3C]/50 transition-shadow placeholder:opacity-60"
               style={{ backgroundColor: '#fff', borderColor: BORDER_LIGHT, color: TEXT_ON_CREAM }}
               rows={3}

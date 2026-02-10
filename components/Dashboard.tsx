@@ -8,6 +8,8 @@ import {
   getImageForDestination,
   saveTripsToStorage,
   updateTripItem,
+  getPreferredStyle,
+  setPreferredStyle,
   type SavedTrip,
   type TripItem,
 } from '@/lib/tripwise-storage';
@@ -19,12 +21,12 @@ const TEXT_ON_CREAM = '#2C1810';
 const TEXT_MUTED = '#5C4A3A';
 const CREAM_SOFT = '#EDE6DC';
 
-async function logTripAction(tripId: string, itemId: string, action: string) {
+async function logTripAction(tripId: string, itemId: string, action: string, variant?: string) {
   try {
     await fetch('/api/trip/log-action', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tripId, itemId, action }),
+      body: JSON.stringify({ tripId, itemId, action, variant }),
     });
   } catch (_) {
     // best-effort Opik logging
@@ -43,12 +45,12 @@ function TripItineraryPanel({
   const handleDone = (item: TripItem) => {
     const nextStatus = item.status === 'done' ? 'pending' : 'done';
     onUpdateItem(item.id, { status: nextStatus });
-    logTripAction(trip.id, item.id, nextStatus);
+    logTripAction(trip.id, item.id, nextStatus, trip.variant);
   };
   const handleImportant = (item: TripItem) => {
     const next = !item.important;
     onUpdateItem(item.id, { important: next });
-    logTripAction(trip.id, item.id, next ? 'important' : 'pending');
+    logTripAction(trip.id, item.id, next ? 'important' : 'pending', trip.variant);
   };
 
   const items = trip.items ?? [];
@@ -208,10 +210,12 @@ export default function Dashboard() {
   const [trips, setTrips] = useState<SavedTrip[]>([]);
   const [mounted, setMounted] = useState(false);
   const [openTripId, setOpenTripId] = useState<string | null>(null);
+  const [preferredStyle, setPreferredStyleState] = useState<'A' | 'B' | null>(null);
 
   useEffect(() => {
     setMounted(true);
     setTrips(getSavedTrips());
+    setPreferredStyleState(getPreferredStyle());
   }, []);
 
   const removeTrip = useCallback((id: string) => {
@@ -295,6 +299,27 @@ export default function Dashboard() {
           >
             Plan new trip
           </Link>
+        </div>
+
+        {/* Preferences: A/B itinerary style (same pattern as encodehack dashboard inputs) */}
+        <div className="rounded-2xl border p-4 sm:p-5 mb-6" style={{ borderColor: BORDER_LIGHT, backgroundColor: BOX_CREAM }}>
+          <h3 className="font-serif-display text-sm font-semibold mb-2" style={{ color: TEXT_ON_CREAM }}>Preferences</h3>
+          <p className="text-xs opacity-90 mb-3" style={{ color: TEXT_MUTED }}>Itinerary style for your next generated trip (A/B)</p>
+          <select
+            value={preferredStyle ?? ''}
+            onChange={(e) => {
+              const v = e.target.value as 'A' | 'B' | '';
+              const next = v === 'A' || v === 'B' ? v : null;
+              setPreferredStyle(next);
+              setPreferredStyleState(next);
+            }}
+            className="w-full max-w-xs px-3 py-2 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#7D5E3C]/50"
+            style={{ borderColor: BORDER_LIGHT, color: TEXT_ON_CREAM, backgroundColor: '#fff' }}
+          >
+            <option value="">Auto (A/B assigned randomly)</option>
+            <option value="A">A — Detailed (more suggestions)</option>
+            <option value="B">B — Compact (shorter list)</option>
+          </select>
         </div>
 
         <h2 className="font-serif-display text-lg font-semibold mb-4" style={{ color: '#FFC6A4' }}>

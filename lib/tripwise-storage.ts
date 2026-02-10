@@ -1,4 +1,7 @@
 export const STORAGE_KEY = 'tripwise_previous_trips';
+export const PREFERRED_STYLE_KEY = 'tripwise_preferred_style';
+
+export type ItineraryStyleVariant = 'A' | 'B';
 
 export interface TripItem {
   id: string;
@@ -16,6 +19,21 @@ export interface SavedTrip {
   budget: string;
   createdAt: number;
   items?: TripItem[];
+  /** A/B variant used when generating this trip */
+  variant?: ItineraryStyleVariant;
+}
+
+export function getPreferredStyle(): ItineraryStyleVariant | null {
+  if (typeof window === 'undefined') return null;
+  const v = localStorage.getItem(PREFERRED_STYLE_KEY);
+  return v === 'A' || v === 'B' ? v : null;
+}
+
+export function setPreferredStyle(variant: ItineraryStyleVariant | null): void {
+  try {
+    if (variant) localStorage.setItem(PREFERRED_STYLE_KEY, variant);
+    else localStorage.removeItem(PREFERRED_STYLE_KEY);
+  } catch {}
 }
 
 const TRIP_IMAGES: Record<string, string> = {

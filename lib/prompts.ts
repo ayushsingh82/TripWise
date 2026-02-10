@@ -20,5 +20,5 @@ Output ONLY a JSON array, no other text or markdown. Example:
 ]
 
 User input:
-{{input}}
+{{input}}{{styleHint}}
 `;

@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {
-    const { tripId, itemId, action } = await request.json();
+    const { tripId, itemId, action, variant } = await request.json();
 
     if (!tripId || !itemId || !action) {
       return NextResponse.json(
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
         trip_id: tripId,
         item_id: itemId,
         action,
+        variant: variant ?? undefined,
       },
       "trip_item_action"
     );

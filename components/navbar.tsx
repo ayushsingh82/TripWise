@@ -38,6 +38,13 @@ export default function Navbar() {
             >
               Plan
             </Link>
+            <Link
+              href="/metrics"
+              className="font-serif-display text-sm font-medium transition-colors hover:opacity-90"
+              style={{ color: '#FFC6A4' }}
+            >
+              Metrics
+            </Link>
           </div>
           <div className="flex items-center gap-4 sm:gap-5 shrink-0">
             <Link
